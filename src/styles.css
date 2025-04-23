@@ -1,0 +1,17 @@
+
+body{
+    font-family: arial;
+}
+
+
+table {
+  border-collapse: collapse;
+  border: 2px solid rgb(140 140 140);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+td{
+  border: 1px solid #000000;
+  text-align: left;
+  padding: 0 15px 0 15px;
+}
