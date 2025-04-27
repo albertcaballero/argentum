@@ -1,10 +1,9 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const {win32} = require('path/posix');
+const sqlite = require('sqlite3').verbose();
 
-// Mock database function
-const getUsers = () => {
-  return [{ id: 1, name: "Alice" }, { id: 2, name: "Bob" }];
-};
+const db = new sqlite.Database('argentum.db');
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -19,8 +18,31 @@ function createWindow () {
 }
 
 // Handle IPC request from renderer
-ipcMain.handle('get-users', async () => {
-  return getUsers(); // Could be real DB logic
+ipcMain.handle('get-recurring-expenses', async () => {
+    return new Promise((resolve, reject) => {
+    const query = `SELECT *  FROM transfers`;
+    db.all(query, [], (err, rows) => {
+      if (err) {
+        console.error('Database error:', err.message);
+        reject(err);
+      } else {
+        resolve(rows);
+      }
+    });
+  });
 });
 
 app.whenReady().then(createWindow);
+
+
+app.on('window-all-closed', () => {
+  if (db) {
+    db.close((err) => {
+      if (err) {
+        console.error('Error closing database:', err.message);
+      } else {
+        console.log('Database connection closed.');
+      }
+    });
+  }
+});
