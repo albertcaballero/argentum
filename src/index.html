@@ -22,9 +22,22 @@
         <tbody id="recurringExpensesBody"> </tbody>
     </table>
     <div style="margin-top: 10px;">
-        <button>Add</button>
-        <button>Edit</button>
-        <button>Delete</button>
+        <button onclick="addExpense()">Add</button>
+        <script>
+            function addExpense(){ document.getElementById("addExpensePopup").style.display = 'flex'; }
+        </script>
+        <button onclick="editExpense()">Edit</button>
+        <button onclick="deleteExpense()">Delete</button>
+    </div>
+
+    <div id="addExpensePopup" class="popup-overlay">
+      <div class="popup">
+        <button class="popup-close" onclick="hidePopup()">✖</button>
+        <h2>Add</h2>
+        <p>Content goes here...</p>
+        <button>Accept</button>
+        <button>Cancel</button>
+      </div>
     </div>
 </body>
 </html>
