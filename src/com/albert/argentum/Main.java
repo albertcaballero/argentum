@@ -1,6 +1,7 @@
 package com.albert.argentum;
 
 import java.util.Scanner;
+import com.albert.argentum.ui.Screen;
 import com.albert.argentum.service.ExpenseTracker;
 
 public class Main {
@@ -9,20 +10,18 @@ public class Main {
         ExpenseTracker tracker = new ExpenseTracker();  // Your main logic class
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
+        String input = "";
 
-        clearScreen();
+        Screen.clearScreen();
         while (running) {
-            System.out.println("\nChoose an option:");
-            System.out.println("1. Add a transaction");
-            System.out.println("2. View all transactions");
-            System.out.println("4. Save to database");
-            System.out.println("5. Exit");
-
-            System.out.print("> ");
-            if (!scanner.hasNext()){
+            Screen.printOpts();
+            if (!scanner.hasNextLine()){
                 break;
             }
-            String input = scanner.nextLine();
+            input = scanner.nextLine().trim();
+            if (input.isEmpty()){
+                continue;
+            }
 
             switch (input) {
                 case "1":
@@ -30,6 +29,9 @@ public class Main {
                     break;
                 case "2":
                     tracker.viewTransactions();
+                    break;
+                case "3":
+                    System.out.println(tracker);
                     break;
                 case "4":
                     tracker.exportCSV();
@@ -39,9 +41,11 @@ public class Main {
                     running = false;
                     break;
                 default:
-                    wrongInput();
+                    Screen.wrongInput(scanner);
             }
-            clearScreen();
+            System.out.println("\nPress ENTER to continue");
+            scanner.nextLine();
+            Screen.clearScreen();
         }
 
         scanner.close();

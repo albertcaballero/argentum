@@ -4,13 +4,19 @@ a Java terminal-based finance and expenses tracker.
 
 ## Compiling and running
 clone the repo
-```git clone git@github.com:albertcaballero/argentum.git```
+```
+git clone git@github.com:albertcaballero/argentum.git
+```
 
 compile with 
-```make```
+```
+make
+```
 
 run with
-```make run```
+```
+make run
+```
 
 
 
