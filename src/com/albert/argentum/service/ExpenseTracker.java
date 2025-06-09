@@ -34,10 +34,19 @@ public class ExpenseTracker {
     }
 
     public void viewTransactions(){
+        int colSize = 15;
+        String[] columns = {"Date", "Amount", "Concept"};
+        //ADD FILTERING
         transactions.sort(new Transaction.DateCompare());
-        System.out.println("Date      |  Amount  | Concept       |");
-        for (int i = 0; i < 20 || i < transactions.size(); ++i){
-            System.out.println(Screen.tabline(transactions.get(i).getDate().toString(), 4));
+        for (int i = 0; i < columns.length; ++i){
+            System.out.print(Screen.tabline(columns[i], colSize)+"|");
+        }
+        System.out.println();
+        for (int i = 0; i < 20 && i < transactions.size(); ++i){
+            System.out.print(Screen.tabline(transactions.get(i).getDate().toString(), colSize) + " ");
+            System.out.print(Screen.tabline(String.format("%.02f", transactions.get(i).getAmount()), colSize)+ " ");
+            System.out.print(Screen.tabline(transactions.get(i).getConcept(), colSize)+ " ");
+            System.out.println();
         }
         //System.out.println(this.toString());
     }
