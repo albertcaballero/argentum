@@ -18,5 +18,6 @@ run: compile
 
 clean:
 	rm -rf $(OUT_DIR)
+	rm -rf transactions.csv
 
 .PHONY: clean run compile all

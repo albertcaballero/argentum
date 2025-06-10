@@ -1,6 +1,9 @@
 
 package com.albert.argentum.ui;
 import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
+import java.time.LocalDate;
 
 public final class Screen{
 
@@ -23,7 +26,7 @@ public final class Screen{
         System.out.println("1. Add a transaction");
         System.out.println("2. View all transactions");
         System.out.println("3. Print all transactions");
-        System.out.println("4. Save to database");
+        System.out.println("4. Save to CSV");
         System.out.println("5. Exit");
         System.out.print("> ");
     }
@@ -37,5 +40,14 @@ public final class Screen{
                 ret += str.charAt(i);
         }
         return ret;
+    }
+
+    public static Map<String, Object> promptFilters(String[] columns){
+        Map<String, Object> filters = new HashMap<String, Object>();
+        filters.put("dateFrom", LocalDate.parse("1999-01-01"));
+        filters.put("dateTo", LocalDate.parse("2099-01-01"));
+        filters.put("amountFrom", 0.0f);
+        filters.put("amountTo", 9999.99f);
+        return filters;
     }
 }

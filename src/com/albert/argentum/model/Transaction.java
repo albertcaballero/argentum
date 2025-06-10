@@ -28,7 +28,7 @@ public class Transaction {
 
     @Override
     public String toString(){
-        return this.date.toString() +", "+this.concept+", " + this.amount;
+        return this.date.toString() +","+this.concept+"," + this.amount;
     }
 
     public static class DateCompare implements Comparator<Transaction>{
