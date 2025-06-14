@@ -3,6 +3,7 @@ package com.albert.argentum;
 import java.util.Scanner;
 import com.albert.argentum.ui.Screen;
 import com.albert.argentum.service.ExpenseTracker;
+import com.albert.argentum.database.Database;
 
 public class Main {
 
@@ -11,6 +12,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
         String input = "";
+        Database db = new Database();
 
         Screen.clearScreen();
         while (running) {

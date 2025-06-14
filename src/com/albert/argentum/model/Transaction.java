@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Comparator;
 
 public class Transaction {
+    private int id;
     private LocalDate date;
     private String concept;
     private float amount;
